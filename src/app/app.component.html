@@ -1,0 +1,54 @@
+<main class="main">
+  <div class="container mt-4">
+    <h1>{{ title }}</h1>
+    
+    <ngb-alert type="success" *ngIf="msg!=''" (close)="msg=''">
+      {{msg}}
+    </ngb-alert>
+
+    <div class="card mb-4 bg-light">
+      <div class="card-body">
+        <h5 class="card-title">Añadir una nueva lista</h5>
+        <form (ngSubmit)="guardarLista()" #listaForm="ngForm">
+          <div class="row g-2 align-items-center">
+            
+            <div class="col-md-4">
+              <input type="text" class="form-control" placeholder="Nombre de la lista" name="nombre" [(ngModel)]="nueva.nombre" required>
+            </div>
+            
+            <div class="col-md-5">
+              <input type="text" class="form-control" placeholder="Descripción" name="descripcion" [(ngModel)]="nueva.descripcion" required>
+            </div>
+            
+            <div class="col-md-1">
+              <input type="color" class="form-control form-control-color w-100" name="color" [(ngModel)]="nueva.color" title="Elige un color">
+            </div>
+            
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-success w-100" [disabled]="!listaForm.form.valid">Guardar</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="btn-group mb-3" role="group">
+      <input type="radio" class="btn-check" name="btnfiltro" id="f1" [(ngModel)]="filtroListas" value="todas">
+      <label class="btn btn-outline-secondary" for="f1">Todas ({{listas.length}})</label>
+
+      <input type="radio" class="btn-check" name="btnfiltro" id="f2" [(ngModel)]="filtroListas" value="visibles">
+      <label class="btn btn-outline-secondary" for="f2">Visibles</label>
+
+      <input type="radio" class="btn-check" name="btnfiltro" id="f3" [(ngModel)]="filtroListas" value="ocultas">
+      <label class="btn btn-outline-secondary" for="f3">Ocultas</label>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-4 mb-3" *ngFor="let lista of getListasFiltradas()">
+        <app-lista [miLista]="lista" (eventoEliminar)="borrarLista($event)"></app-lista>
+      </div>
+    </div> 
+
+  </div>
+</main>

@@ -1,0 +1,30 @@
+{
+  "listas": [
+    {
+      "id": 1,
+      "nombre": "Lista de la compra",
+      "descripcion": "Cosas para comprar en el Mercadona",
+      "color": "#d1ecf1",
+      "fechaCreacion": "2023-10-25T10:00:00.000Z",
+      "visible": true,
+      "tareas": [
+        {
+          "nombre": "Leche",
+          "descripcion": "Semidesnatada",
+          "fechaFinalizacion": "2023-10-26T10:00:00.000Z",
+          "visible": true,
+          "terminada": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Tareas de la Uni",
+      "descripcion": "Prácticas y entregables pendientes",
+      "color": "#f8d7da",
+      "fechaCreacion": "2023-10-25T10:00:00.000Z",
+      "visible": true,
+      "tareas": []
+    }
+  ]
+}

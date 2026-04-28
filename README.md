@@ -1,27 +1,73 @@
-# AppListas
+# Taller de Angular - App de Listas de Tareas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
+Este proyecto es una aplicación web en formato Single Page Application (SPA) desarrollada con **Angular**, diseñada para la gestión de listas de tareas. Ha sido creada como parte del Taller de Angular para la asignatura de **Gestión de la Calidad del Software (4º Grado en Ingeniería Informática)** de la Universidad de Alicante.
 
-## Development server
+## Características Implementadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Se han desarrollado todos los requisitos básicos solicitados en el taller, así como las tareas opcionales I y II.
 
-## Code scaffolding
+### Gestión de Listas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Visualización en tarjetas:** Las listas se muestran usando componentes *Card* de Bootstrap, con el color de fondo personalizado según el elegido por el usuario.
+- **Creación de listas:** Formulario para añadir nuevas listas con nombre, descripción y color.
+- **Detalle de la lista:** Botón para mostrar u ocultar los detalles de una lista seleccionada (descripción y tareas).
+- **Edición:** Posibilidad de modificar el nombre, la descripción y el color de una lista existente.
+- **Borrado con confirmación:** Integración de diálogos modales mediante `ng-bootstrap` para solicitar confirmación antes de eliminar una lista definitivamente.
+- **Modelado de datos avanzado:** La entidad `Lista` incluye atributos como identificador único, fecha de creación y visibilidad.
 
-## Build
+### Gestión de Tareas (Detalle de la lista)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Componente dedicado:** Se ha creado un componente independiente (`TareaComponent`) que encapsula toda la lógica visual y de interacción de una tarea individual.
+- **Añadir y eliminar:** Capacidad de registrar nuevas tareas y eliminar las existentes dentro de cada lista.
+- **Control de estado:** Permite marcar una tarea como 'terminada' o 'pendiente'.
+- **Filtros de visualización:** Sistema de filtrado en el detalle de la lista para mostrar las tareas según su estado: *Todas*, *Acabadas* o *Pendientes*.
 
-## Running unit tests
+### Arquitectura y Tecnologías
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Angular 17:** Uso de componentes, directivas estructurales y flujos de control.
+- **Comunicación entre componentes:** Uso intensivo de decoradores `@Input()` y `@Output()` (con `EventEmitter`) para la comunicación entre componentes padres e hijos (`AppComponent`, `ListaComponent` y `TareaComponent`).
+- **Servicios y HTTP:** Implementación de `ListaService` (inyectado en los componentes) para gestionar el CRUD de listas mediante peticiones HTTP.
+- **Backend Simulado:** Uso de `json-server` para simular una API REST utilizando el archivo `db.json`.
+- **Estilos y UI:** Integración de **Bootstrap** y **ng-bootstrap** para la maquetación responsive y componentes interactivos (modales, alertas).
 
-## Running end-to-end tests
+## Instalación y Ejecución
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Sigue estos pasos para probar la aplicación en tu entorno local:
 
-## Further help
+### 1. Clonar el repositorio y acceder al directorio
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+git clone https://github.com/ass190-ua/TallerAngular
+cd TallerAngular
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Arrancar el servidor de base de datos (Backend simulado)
+
+```bash
+npm run server
+```
+
+Esto levantará `json-server` en el puerto **3000**.
+
+### 4. Arrancar la aplicación Angular
+
+```bash
+npm start
+```
+
+### 5. Abrir en el navegador
+
+http://localhost:4200/
+
+---
+
+## Autores
+
+- [**@ass190-ua**](https://github.com/ass190-ua) | Arturo Soriano Sánchez
+- [**@eps63-ua**](https://github.com/Eps63-ua)   | Esther Peral Soler

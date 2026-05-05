@@ -17,9 +17,13 @@ export class AppComponent implements OnInit {
   // Objeto enlazado al formulario para la nueva lista
   nueva: Lista = new Lista();
 
+  // Constructor: Inyectamos el servicio ListaService para manejar la persistencia
   constructor(private listaService: ListaService) {}
 
-  // Función que se ejecutará al enviar el formulario
+  /**
+   * Crea una nueva lista: asigna ID y fecha de creación, la envía al servidor mediante el servicio,
+   * la añade al array local y resetea el formulario. Muestra un mensaje de éxito durante 3 segundos.
+   */
   guardarLista() {
     this.nueva.id = Date.now(); 
     this.nueva.fechaCreacion = new Date(); 
@@ -35,7 +39,10 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // Función para borrar la lista del array
+  /**
+   * Elimina una lista: llama al servicio para borrarla en el servidor. Si tiene éxito,
+   * la elimina del array local y muestra un mensaje durante 3 segundos.
+   */
   borrarLista(listaABorrar: Lista) {
     this.listaService.eliminarLista(listaABorrar.id).subscribe({
       next: () => {
@@ -58,6 +65,10 @@ export class AppComponent implements OnInit {
     setTimeout(() => { this.msg = '' }, 3000);
   }
 
+  /**
+   * Carga inicial: al inicializar el componente, pide todas las listas al servidor
+   * utilizando ListaService y las guarda en la variable local 'listas'.
+   */
   ngOnInit(): void {
     setTimeout(() => { this.msg = '' }, 5000);
 
@@ -72,7 +83,10 @@ export class AppComponent implements OnInit {
   // Variable para el estado del filtro: 'todas', 'visibles' o 'ocultas'
   filtroListas: string = 'todas';
 
-  // Función para obtener las listas filtradas
+  /**
+   * Filtra el array de listas según la opción seleccionada ('todas', 'visibles' u 'ocultas').
+   * Retorna el array filtrado para ser renderizado en la plantilla mediante *ngFor.
+   */
   getListasFiltradas() {
     if (this.filtroListas === 'visibles') {
       return this.listas.filter(l => l.visible);

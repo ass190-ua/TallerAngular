@@ -9,6 +9,7 @@
     <div class="card mb-4 bg-light">
       <div class="card-body">
         <h5 class="card-title">Añadir una nueva lista</h5>
+        <!-- Formulario para crear lista: al hacer submit invoca guardarLista() -->
         <form (ngSubmit)="guardarLista()" #listaForm="ngForm">
           <div class="row g-2 align-items-center">
             
@@ -33,6 +34,7 @@
       </div>
     </div>
 
+    <!-- Grupo de botones para filtrar las listas mediante [(ngModel)] -->
     <div class="btn-group mb-3" role="group">
       <input type="radio" class="btn-check" name="btnfiltro" id="f1" [(ngModel)]="filtroListas" value="todas">
       <label class="btn btn-outline-secondary" for="f1">Todas ({{listas.length}})</label>
@@ -44,11 +46,17 @@
       <label class="btn btn-outline-secondary" for="f3">Ocultas</label>
     </div>
 
+    <!-- Renderización de las tarjetas de listas filtradas -->
     <div class="row mt-4">
       <div class="col-md-4 mb-3" *ngFor="let lista of getListasFiltradas()">
+        <!-- Pasamos el objeto lista como [miLista] y capturamos el (eventoEliminar) -->
         <app-lista [miLista]="lista" (eventoEliminar)="borrarLista($event)"></app-lista>
       </div>
     </div> 
+
+    <footer class="mt-5 text-center text-muted border-top pt-3 pb-4">
+      <small>Desarrollado por: <strong>Arturo Soriano Sánchez</strong> y <strong>Esther Peral Soler</strong></small>
+    </footer>
 
   </div>
 </main>

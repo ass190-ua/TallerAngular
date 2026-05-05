@@ -12,18 +12,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListaComponent,
-    TareaComponent
+    AppComponent,       // Componente raíz de la aplicación
+    ListaComponent,     // Componente que renderiza cada tarjeta de lista
+    TareaComponent      // Componente que renderiza cada tarea individual
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule
+    BrowserModule,      // Necesario para que la aplicación corra en el navegador web
+    AppRoutingModule,   // Módulo para el enrutamiento (si se usan múltiples páginas/vistas)
+    NgbModule,          // Integración de ng-bootstrap (para componentes visuales como modales)
+    FormsModule,        // Necesario para los formularios y el enlace bidireccional [(ngModel)]
+    HttpClientModule    // Permite hacer peticiones HTTP al servidor (backend REST)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent] // Componente por el que arranca la aplicación
 })
 export class AppModule { }

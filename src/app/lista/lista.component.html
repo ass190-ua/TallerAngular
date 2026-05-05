@@ -1,6 +1,7 @@
 <div class="card h-100" [style.backgroundColor]="miLista.color">
   <div class="card-body">
     
+    <!-- Muestra el título solo si no estamos editando -->
     <div *ngIf="!editando">
       <h5 class="card-title">{{ miLista.nombre }}</h5>
     </div>
@@ -15,6 +16,7 @@
       </div>
     </div>
     
+    <!-- Área de detalles y lista de tareas (solo visible si mostrarDetalles es true) -->
     <div *ngIf="mostrarDetalles" class="mt-3 p-2 bg-white bg-opacity-50 rounded">
       
       <div class="d-flex justify-content-between mb-2">
@@ -38,6 +40,7 @@
         </select>
       </div>
       
+      <!-- Lista de tareas asociadas a esta lista. Itera sobre getTareasFiltradas() -->
       <div class="mb-3">
         <app-tarea *ngFor="let t of getTareasFiltradas()" 
                    [miTarea]="t" 
@@ -60,6 +63,7 @@
   </div>
   
   <div class="card-footer bg-transparent border-0">
+    <!-- Controles de la tarjeta -->
     <div class="btn-group w-100">
       <button class="btn btn-sm btn-outline-dark" (click)="toggleDetalles()" [disabled]="editando">
         {{ mostrarDetalles ? 'Ocultar' : 'Ver detalle' }}
